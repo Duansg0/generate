@@ -8,7 +8,9 @@ public class ApplicationStartMain {
 
     public static void main(String[] args) throws Exception{
         GlobalProperties globalProperties = GlobalPropertiesContextLoader.create("conf.properties");
-        GlobalGitContextLoader.create(globalProperties);
+        String s = GlobalGitContextLoader.create(globalProperties);
+
+        String globalGitLocalFolderPath = globalProperties.getGlobalGitLocalFolderPath();
 
     }
 }

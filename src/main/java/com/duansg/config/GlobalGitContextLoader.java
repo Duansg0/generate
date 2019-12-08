@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * @author Duansg
  * @date 2019-12-06
- * @desc
+ * @desc GIT全局配置初始化构建类
  */
 public class GlobalGitContextLoader {
 
