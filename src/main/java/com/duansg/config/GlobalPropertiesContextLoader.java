@@ -27,8 +27,8 @@ public class GlobalPropertiesContextLoader {
         GlobalProperties globalProperties = (GlobalProperties) clazz.newInstance();
         for (Map.Entry<Object, Object> entry : prop.entrySet()) {
             for (Method method : clazz.getMethods()) {
-                if (null != method && StringUtils.isNotBlank(method.getName())){
-                    if (converMethodName(entry.getKey()).equals(method.getName()))
+                if (!ObjectUtils.isEmpty(method) && StringUtils.isNotBlank(method.getName())){
+                    if (converMethodName((String)entry.getKey()).equals(method.getName()))
                         method.invoke(globalProperties,entry.getValue());
                 }
             }
@@ -41,18 +41,13 @@ public class GlobalPropertiesContextLoader {
      * @param key
      * @return
      */
-    private static String converMethodName(Object key) {
-        if (!ObjectUtils.isEmpty(key)){
-            String strKey = (String)key;
-            String[] keys = strKey.split("_");
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("set");
-            for (int i = 0; i < keys.length; i++) {
-                stringBuilder.append(keys[i].substring(0,1));
-                stringBuilder.append(keys[i].substring(1,keys[i].length()).toLowerCase());
-            }
-            return stringBuilder.toString();
+    private static String converMethodName(String key) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String[] keys = key.split("_");
+        stringBuilder.append("set");
+        for (int i = 0; i < keys.length; i++) {
+            stringBuilder.append(keys[i].substring(0,1)).append(keys[i].substring(1,keys[i].length()).toLowerCase());
         }
-        return null;
+        return stringBuilder.toString();
     }
 }
