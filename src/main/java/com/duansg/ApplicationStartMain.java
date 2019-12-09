@@ -1,16 +1,22 @@
 package com.duansg;
 
-import com.duansg.base.GlobalProperties;
-import com.duansg.config.GlobalGitContextLoader;
-import com.duansg.config.GlobalPropertiesContextLoader;
+import com.duansg.annotation.ApplicationInitScan;
+import com.duansg.annotation.GlobalFileHandleConfig;
+import com.duansg.annotation.GlobalGitContextScan;
+import com.duansg.config.ApplicationInitExcute;
+import com.duansg.route.NodeJsFileHandle;
+import org.apache.commons.lang3.StringUtils;
 
+@ApplicationInitScan(scan = "conf.properties")
+@GlobalGitContextScan
+@GlobalFileHandleConfig(routeHandle = NodeJsFileHandle.class)
 public class ApplicationStartMain {
-
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception{
-        GlobalProperties globalProperties = GlobalPropertiesContextLoader.create("conf.properties");
-        String s = GlobalGitContextLoader.create(globalProperties);
-
-        String globalGitLocalFolderPath = globalProperties.getGlobalGitLocalFolderPath();
-
+        ApplicationInitExcute.excute(ApplicationStartMain.class);
     }
 }
