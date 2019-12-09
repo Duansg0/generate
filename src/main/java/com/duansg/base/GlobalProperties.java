@@ -38,4 +38,10 @@ public class GlobalProperties implements Serializable {
      * @desc 选择需要拉取的切换分支
      */
     private String globalGitPullBranch;
+
+
+    /**
+     * 保留目录
+     */
+    private String folderFiltersRetain;
 }
