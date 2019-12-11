@@ -5,7 +5,7 @@ import com.duansg.annotation.GlobalFileHandleConfig;
 import com.duansg.annotation.GlobalGitContextScan;
 import com.duansg.config.ApplicationInitExcute;
 import com.duansg.route.NodeJsFileHandle;
-import org.apache.commons.lang3.StringUtils;
+
 
 @ApplicationInitScan(scan = "conf.properties")
 @GlobalGitContextScan
@@ -17,6 +17,6 @@ public class ApplicationStartMain {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception{
-        ApplicationInitExcute.excute(ApplicationStartMain.class);
+       ApplicationInitExcute.excute(ApplicationStartMain.class);
     }
 }
